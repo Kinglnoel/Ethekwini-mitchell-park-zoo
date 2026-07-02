@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mitchell Park Zoo — Durban's Beloved Wildlife Sanctuary</title>
+  <meta name="description" content="Discover the magic of Mitchell Park Zoo in Durban, South Africa. Home to exotic animals, tropical gardens, and natural beauty in the heart of Morningside.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦚</text></svg>">
+
+<style>
+/* ==============================
+   ROOT & RESET
+   ============================== */
+:root {
+  --g-deep:    #1a3d2b;
+  --g-mid:     #2d6a4f;
+  --g-light:   #52b788;
+  --g-pale:    #b7e4c7;
+  --gold:      #c9a84c;
+  --gold-lt:   #f0d080;
+  --cream:     #fdf8f0;
+  --brown:     #6b3f1e;
+  --txt-dark:  #1a1a2e;
+  --txt-mid:   #3d3d5c;
+  --white:     #ffffff;
+  --sh-soft:   0 8px 32px rgba(26,61,43,.15);
+  --sh-strong: 0 16px 48px rgba(26,61,43,.28);
+  --r:         16px;
+  --r-sm:      8px;
+  --tr:        all .4s cubic-bezier(.25,.46,.45,.94);
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Inter',sans-serif;
+  background:var(--cream);
+  color:var(--txt-dark);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+img { max-width:100%; height:auto; display:block; }
+a { text-decoration:none; color:inherit; }
+ul { list-style:none; }
+
+/* ==============================
+   BUTTERFLY CANVAS
+   ============================== */
+#butterfly-canvas {
+  position:fixed;
+  top:0; left:0; width:100%; height:100%;
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* ==============================
+   NAV
+   ============================== */
+.nav {
+  position:fixed; top:0; left:0; right:0;
+  z-index:1000; height:70px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 2rem;
+  background:rgba(26,61,43,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,168,76,.3);
+  transition:var(--tr);
+}
+.nav.scrolled { background:rgba(26,61,43,.98); box-shadow:0 4px 20px rgba(0,0,0,.3); }
+.nav-logo { display:flex; align-items:center; gap:12px; }
+.nav-logo-icon { width:44px; height:44px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; }
+.nav-logo-text { font-family:'Playfair Display',serif; font-weight:700; font-size:1.1rem; color:white; line-height:1.2; }
+.nav-logo-text span { display:block; font-size:.68rem; font-family:'Inter',sans-serif; font-weight:400; color:var(--gold-lt); letter-spacing:2px; text-transform:uppercase; }
+.nav-links { display:flex; gap:1.5rem; align-items:center; }
+.nav-links a { color:rgba(255,255,255,.85); font-size:.88rem; font-weight:500; letter-spacing:.5px; text-transform:uppercase; position:relative; transition:var(--tr); }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--gold); transition:var(--tr); }
+.nav-links a:hover { color:var(--gold-lt); }
+.nav-links a:hover::after { width:100%; }
+.nav-cta { background:var(--gold); color:var(--g-deep)!important; padding:7px 18px; border-radius:24px; font-weight:700!important; }
+.nav-cta:hover { background:var(--gold-lt); transform:scale(1.05); }
+.nav-cta::after { display:none!important; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+.hamburger span { display:block; width:24px; height:2px; background:white; border-radius:2px; transition:var(--tr); }
+
+/* ==============================
+   SECTION SYSTEM
+   ============================== */
+section { padding:5rem 2rem; }
+.sec-alt { background:var(--g-deep); color:white; }
+.sec-green { background:linear-gradient(135deg,var(--g-deep) 0%,var(--g-mid) 100%); color:white; }
+.sec-cream { background:var(--cream); }
+.sec-light { background:linear-gradient(135deg,#f8f4ee 0%,#e8f5e9 100%); }
+.container { max-width:1200px; margin:0 auto; }
+.sec-tag { display:inline-flex; align-items:center; gap:8px; color:var(--gold); font-size:.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:.9rem; }
+.sec-tag::before { content:''; display:block; width:24px; height:2px; background:var(--gold); }
+.sec-title { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4vw,3.1rem); font-weight:800; line-height:1.15; margin-bottom:1rem; }
+.sec-title span { color:var(--gold); }
+.sec-desc { font-size:1rem; line-height:1.75; opacity:.85; }
+.sec-header { text-align:center; max-width:700px; margin:0 auto 1rem; }
+.sec-header .sec-desc { margin:0 auto; }
+
+/* ==============================
+   HERO
+   ============================== */
+#home {
+  position:relative; height:100vh; min-height:680px;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  padding:0;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:url('images/mitchell-park (7).jpg') center 40% / cover no-repeat;
+  transform:scale(1.08);
+  transition:transform 8s ease;
+}
+.hero-bg.loaded { transform:scale(1); }
+.hero-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(160deg,rgba(26,61,43,.78) 0%,rgba(26,61,43,.45) 50%,rgba(201,168,76,.15) 100%);
+}
+.hero-content { position:relative; z-index:2; text-align:center; color:white; padding:2rem; max-width:920px; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(201,168,76,.2); border:1px solid rgba(201,168,76,.45);
+  color:var(--gold-lt); padding:6px 20px; border-radius:24px;
+  font-size:.78rem; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:1.5rem; backdrop-filter:blur(8px);
+  opacity:0; transform:translateY(20px);
+  animation:fadeUp .8s .3s forwards;
+}
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,8vw,6rem); font-weight:900; line-height:1.05;
+  margin-bottom:1rem;
+  opacity:0; transform:translateY(30px);
+  animation:fadeUp .8s .5s forwards;
+}
+.hero h1 em { font-style:normal; color:var(--gold-lt); display:block; }
+.hero-sub {
+  font-size:clamp(1rem,2vw,1.25rem); color:rgba(255,255,255,.85); margin-bottom:2.5rem;
+  font-weight:300; letter-spacing:.5px;
+  opacity:0; transform:translateY(30px);
+  animation:fadeUp .8s .7s forwards;
+}
+.hero-btns {
+  display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+  opacity:0; transform:translateY(30px);
+  animation:fadeUp .8s .9s forwards;
+}
+.hero-scroll {
+  position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  color:rgba(255,255,255,.55); font-size:.72rem; letter-spacing:2px; text-transform:uppercase;
+  animation:bounce 2s infinite;
+}
+.hero-scroll::after { content:'↓'; font-size:1.1rem; }
+
+/* ==============================
+   BUTTONS
+   ============================== */
+.btn { display:inline-flex; align-items:center; gap:8px; padding:13px 32px; border-radius:50px; font-weight:700; font-size:.92rem; border:none; cursor:pointer; transition:var(--tr); letter-spacing:.5px; font-family:'Inter',sans-serif; }
+.btn-gold { background:var(--gold); color:var(--g-deep); box-shadow:0 4px 20px rgba(201,168,76,.35); }
+.btn-gold:hover { background:var(--gold-lt); transform:translateY(-3px); box-shadow:0 8px 28px rgba(201,168,76,.5); }
+.btn-outline { background:transparent; color:white; border:2px solid rgba(255,255,255,.5); }
+.btn-outline:hover { border-color:white; background:rgba(255,255,255,.1); transform:translateY(-3px); }
+.btn-dark { background:var(--g-deep); color:white; }
+.btn-dark:hover { background:var(--g-mid); transform:translateY(-3px); }
+.btn-line-dark { background:transparent; color:var(--g-deep); border:2px solid var(--g-mid); }
+.btn-line-dark:hover { background:var(--g-pale); transform:translateY(-3px); }
+
+/* ==============================
+   STATS BAR
+   ============================== */
+.stats-bar { background:var(--gold); padding:1.5rem 2rem; }
+.stats-bar .container { display:flex; justify-content:space-around; flex-wrap:wrap; gap:1rem; }
+.stat-item { text-align:center; color:var(--g-deep); }
+.stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; display:block; line-height:1; }
+.stat-lbl { font-size:.78rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; opacity:.7; margin-top:4px; }
+
+/* ==============================
+   ABOUT GRID
+   ============================== */
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.about-img-stack { position:relative; height:460px; }
+.about-img-main { width:75%; height:360px; object-fit:cover; border-radius:var(--r); box-shadow:var(--sh-strong); position:absolute; right:0; bottom:0; }
+.about-img-accent { width:55%; height:220px; object-fit:cover; border-radius:var(--r); box-shadow:var(--sh-strong); position:absolute; left:0; top:0; border:5px solid var(--cream); }
+.about-quote { font-family:'Dancing Script',cursive; font-size:1.5rem; color:var(--gold); margin:1.5rem 0; line-height:1.4; }
+.check-list { display:flex; flex-direction:column; gap:.7rem; margin-top:1.3rem; }
+.check-list li { display:flex; gap:10px; align-items:flex-start; font-size:.92rem; }
+.check-list li::before { content:'✓'; color:var(--g-light); font-weight:700; flex-shrink:0; margin-top:1px; }
+.check-list.white li { color:rgba(255,255,255,.85); }
+.check-list.white li::before { color:var(--gold-lt); }
+
+/* ==============================
+   FEATURE STRIP
+   ============================== */
+.feature-strip { display:grid; grid-template-columns:repeat(5,1fr); background:white; border-radius:var(--r); overflow:hidden; box-shadow:var(--sh-soft); margin:3rem 0; }
+.feat-item { padding:1.8rem 1.2rem; text-align:center; border-right:1px solid rgba(0,0,0,.05); transition:var(--tr); }
+.feat-item:last-child { border-right:none; }
+.feat-item:hover { background:var(--g-pale); }
+.feat-icon { font-size:2.2rem; margin-bottom:.6rem; display:block; }
+.feat-title { font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; color:var(--g-deep); margin-bottom:.4rem; }
+.feat-text { font-size:.82rem; color:var(--txt-mid); line-height:1.5; }
+
+/* ==============================
+   CARDS GRID
+   ============================== */
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; margin-top:2.5rem; }
+.card { background:white; border-radius:var(--r); overflow:hidden; box-shadow:var(--sh-soft); transition:var(--tr); }
+.card:hover { transform:translateY(-7px); box-shadow:var(--sh-strong); }
+.card-img-wrap { overflow:hidden; position:relative; }
+.card-img { width:100%; height:230px; object-fit:cover; transition:transform .6s ease; }
+.card:hover .card-img { transform:scale(1.06); }
+.card-badge { position:absolute; top:12px; right:12px; background:rgba(201,168,76,.92); color:var(--g-deep); padding:3px 11px; border-radius:18px; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+.card-body { padding:1.4rem; }
+.card-title { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; margin-bottom:.4rem; color:var(--g-deep); }
+.card-sub { font-size:.75rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-bottom:.65rem; }
+.card-text { font-size:.88rem; color:var(--txt-mid); line-height:1.65; }
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:.9rem; }
+.tag { background:var(--g-pale); color:var(--g-deep); padding:3px 9px; border-radius:10px; font-size:.68rem; font-weight:600; }
+
+/* ==============================
+   FILTER BAR
+   ============================== */
+.filter-bar { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; margin:2rem 0; }
+.filter-btn {
+  padding:8px 20px; border-radius:24px; border:2px solid var(--g-mid);
+  background:transparent; color:var(--g-mid); font-size:.83rem; font-weight:600;
+  cursor:pointer; transition:all .25s; font-family:'Inter',sans-serif;
+}
+.filter-btn:hover, .filter-btn.active { background:var(--g-mid); color:white; }
+.card.hidden { display:none; }
+
+/* ==============================
+   ANIMAL SPOTLIGHT
+   ============================== */
+.spotlight { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; padding:3rem 0; border-bottom:1px solid rgba(0,0,0,.06); }
+.spotlight:nth-child(even) { direction:rtl; }
+.spotlight:nth-child(even) > * { direction:ltr; }
+.spotlight img { width:100%; height:340px; object-fit:cover; border-radius:var(--r); box-shadow:var(--sh-strong); }
+.sp-sci { font-style:italic; color:var(--gold); font-size:.83rem; font-weight:600; margin-bottom:.65rem; display:block; }
+.sp-title { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--g-deep); margin-bottom:.9rem; }
+.sp-text { color:var(--txt-mid); line-height:1.75; font-size:.9rem; margin-bottom:.9rem; }
+.sp-facts { display:grid; grid-template-columns:1fr 1fr; gap:.65rem; margin-top:1.3rem; }
+.sp-fact { background:var(--g-pale); padding:.7rem .9rem; border-radius:6px; }
+.sp-fact-lbl { font-size:.68rem; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:var(--g-mid); margin-bottom:2px; }
+.sp-fact-val { font-size:.88rem; font-weight:600; color:var(--g-deep); }
+
+/* ==============================
+   GARDEN MOSAIC
+   ============================== */
+.garden-mosaic { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:200px 200px; gap:10px; border-radius:var(--r); overflow:hidden; }
+.garden-mosaic img { width:100%; height:100%; object-fit:cover; }
+.garden-mosaic .span2 { grid-column:span 2; }
+
+/* ==============================
+   SEASON GRID
+   ============================== */
+.season-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; margin-top:2.5rem; }
+.season-card { background:white; border-radius:var(--r); padding:1.8rem 1.4rem; text-align:center; box-shadow:var(--sh-soft); border-top:4px solid var(--g-light); transition:var(--tr); }
+.season-card:nth-child(2) { border-top-color:var(--gold); }
+.season-card:nth-child(3) { border-top-color:#f4a261; }
+.season-card:nth-child(4) { border-top-color:#a2d2ff; }
+.season-card:hover { transform:translateY(-6px); box-shadow:var(--sh-strong); }
+.s-icon { font-size:2.2rem; margin-bottom:.8rem; }
+.s-name { font-family:'Playfair Display',serif; font-weight:700; font-size:1.1rem; color:var(--g-deep); margin-bottom:.35rem; }
+.s-months { font-size:.72rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:.65rem; }
+.s-text { font-size:.83rem; color:var(--txt-mid); line-height:1.6; }
+
+/* ==============================
+   PRICE GRID
+   ============================== */
+.price-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; margin-top:2.5rem; }
+.price-card { background:white; border-radius:var(--r); padding:2.2rem 1.6rem; text-align:center; box-shadow:var(--sh-soft); border:2px solid transparent; transition:var(--tr); position:relative; overflow:hidden; }
+.price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--g-mid); }
+.price-card.feat::before { background:var(--gold); }
+.price-card.feat { border-color:var(--gold); transform:scale(1.04); box-shadow:var(--sh-strong); }
+.price-card:hover { transform:translateY(-6px) scale(1.02); box-shadow:var(--sh-strong); }
+.price-card.feat:hover { transform:translateY(-6px) scale(1.06); }
+.price-icon { font-size:2.5rem; margin-bottom:.9rem; }
+.price-lbl { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--g-deep); margin-bottom:.4rem; }
+.price-amt { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:900; color:var(--g-mid); margin:.9rem 0; line-height:1; }
+.price-amt small { font-size:.9rem; color:var(--txt-mid); font-family:'Inter',sans-serif; }
+.price-details { font-size:.85rem; color:var(--txt-mid); line-height:1.65; }
+.p-badge { display:inline-block; background:var(--gold); color:var(--g-deep); padding:2px 11px; border-radius:18px; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:.9rem; }
+.free-amt { color:var(--g-light); font-size:1.8rem; }
+
+/* ==============================
+   INFO BOX
+   ============================== */
+.info-box { background:white; border-radius:var(--r); padding:2.2rem; box-shadow:var(--sh-soft); border-left:4px solid var(--gold); }
+.info-box h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--g-deep); margin-bottom:1.3rem; }
+.info-row { display:flex; gap:1rem; padding:.8rem 0; border-bottom:1px solid rgba(0,0,0,.06); align-items:flex-start; }
+.info-row:last-child { border-bottom:none; padding-bottom:0; }
+.i-icon { font-size:1.1rem; min-width:26px; }
+.i-lbl { font-weight:600; font-size:.82rem; color:var(--g-deep); min-width:120px; text-transform:uppercase; letter-spacing:.5px; }
+.i-val { font-size:.88rem; color:var(--txt-mid); line-height:1.5; }
+
+/* ==============================
+   HOURS TABLE
+   ============================== */
+.hours-table { width:100%; border-collapse:collapse; margin-top:1.3rem; }
+.hours-table td { padding:.8rem 1rem; border-bottom:1px solid rgba(0,0,0,.06); font-size:.88rem; }
+.hours-table tr:last-child td { border-bottom:none; }
+.hours-table .day { font-weight:600; color:var(--g-deep); }
+.hours-table .time { color:var(--txt-mid); }
+.hours-table .hi td { background:var(--g-pale); }
+.badge-open { display:inline-block; background:var(--g-light); color:white; padding:1px 8px; border-radius:10px; font-size:.68rem; font-weight:700; vertical-align:middle; margin-left:6px; }
+
+/* ==============================
+   MAP
+   ============================== */
+.map-wrap { border-radius:var(--r); overflow:hidden; box-shadow:var(--sh-strong); height:460px; margin-top:2.5rem; }
+.map-wrap iframe { width:100%; height:100%; border:none; }
+
+/* ==============================
+   MASONRY GALLERY
+   ============================== */
+.masonry { columns:4; column-gap:10px; }
+.mitem { break-inside:avoid; margin-bottom:10px; position:relative; overflow:hidden; border-radius:10px; cursor:pointer; }
+.mitem img { width:100%; display:block; transition:transform .5s ease; border-radius:10px; }
+.mitem:hover img { transform:scale(1.06); }
+.mitem-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(26,61,43,.7) 0%,transparent 60%); opacity:0; transition:opacity .35s; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.mitem:hover .mitem-overlay { opacity:1; }
+.mitem-overlay span { color:white; font-size:2rem; }
+
+/* ==============================
+   TIPS CARDS
+   ============================== */
+.tip-card { display:flex; gap:1.1rem; padding:1.4rem; background:white; border-radius:var(--r-sm); box-shadow:var(--sh-soft); margin-bottom:.9rem; transition:var(--tr); }
+.tip-card:hover { transform:translateX(4px); }
+.tip-icon { font-size:1.8rem; flex-shrink:0; }
+.tip-title { font-family:'Playfair Display',serif; font-weight:700; color:var(--g-deep); margin-bottom:.35rem; font-size:1rem; }
+.tip-text { font-size:.83rem; color:var(--txt-mid); line-height:1.6; }
+
+/* ==============================
+   ACCORDION
+   ============================== */
+.accordion { display:flex; flex-direction:column; gap:.9rem; max-width:800px; margin:2rem auto 0; }
+.acc-item { background:white; border-radius:var(--r-sm); box-shadow:var(--sh-soft); overflow:hidden; }
+.acc-head { padding:1.2rem 1.4rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:background .2s; }
+.acc-head:hover { background:var(--g-pale); }
+.acc-head h4 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--g-deep); }
+.acc-icon { color:var(--gold); font-size:1.4rem; transition:transform .3s; flex-shrink:0; margin-left:1rem; }
+.acc-item.open .acc-icon { transform:rotate(45deg); }
+.acc-body { max-height:0; overflow:hidden; transition:max-height .4s ease, padding .4s ease; padding:0 1.4rem; font-size:.88rem; color:var(--txt-mid); line-height:1.7; }
+.acc-item.open .acc-body { max-height:400px; padding:0 1.4rem 1.4rem; }
+
+/* ==============================
+   SECTION DIVIDER
+   ============================== */
+.divider { text-align:center; margin:3rem 0; color:var(--gold); font-size:1.4rem; letter-spacing:.8rem; }
+
+/* ==============================
+   2-COL LAYOUT
+   ============================== */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start; }
+
+/* ==============================
+   GALLERY SECTION NAV ANCHOR TITLES
+   ============================== */
+.section-anchor-title {
+  font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700;
+  color:var(--g-deep); margin-bottom:1.3rem; display:flex; align-items:center; gap:.65rem;
+}
+.section-anchor-title::after { content:''; flex:1; height:1px; background:linear-gradient(to right,var(--gold),transparent); }
+
+/* ==============================
+   CTA BAND
+   ============================== */
+.cta-band { background:var(--gold); padding:3.5rem 2rem; text-align:center; }
+.cta-band h2 { font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.5vw,2.7rem); color:var(--g-deep); margin-bottom:.9rem; }
+.cta-band p { color:var(--g-deep); opacity:.8; margin-bottom:1.8rem; max-width:520px; margin-left:auto; margin-right:auto; font-size:1rem; }
+.cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+/* ==============================
+   FOOTER
+   ============================== */
+.footer { background:var(--g-deep); color:rgba(255,255,255,.8); padding:4rem 2rem 2rem; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; max-width:1200px; margin:0 auto 3rem; }
+.f-brand { display:flex; align-items:center; gap:12px; margin-bottom:1.1rem; }
+.f-brand-icon { width:44px; height:44px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.f-brand-text { font-family:'Playfair Display',serif; font-weight:700; color:white; line-height:1.2; }
+.f-tagline { font-size:.83rem; line-height:1.65; color:rgba(255,255,255,.6); margin-bottom:1.3rem; }
+.f-social { display:flex; gap:8px; }
+.f-social-btn { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size:.95rem; cursor:pointer; transition:var(--tr); }
+.f-social-btn:hover { background:var(--gold); }
+.f-heading { font-family:'Playfair Display',serif; font-weight:700; font-size:.95rem; color:white; margin-bottom:1.1rem; }
+.f-links { display:flex; flex-direction:column; gap:.55rem; }
+.f-links a { font-size:.83rem; color:rgba(255,255,255,.6); transition:color .2s; }
+.f-links a:hover { color:var(--gold-lt); }
+.f-contact-item { display:flex; gap:9px; margin-bottom:.75rem; font-size:.83rem; color:rgba(255,255,255,.6); }
+.f-contact-icon { font-size:.95rem; flex-shrink:0; color:var(--gold); }
+.f-bottom { max-width:1200px; margin:0 auto; padding-top:1.8rem; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; font-size:.78rem; color:rgba(255,255,255,.4); }
+.f-bottom a { color:var(--gold-lt); }
+
+/* ==============================
+   LIGHTBOX
+   ============================== */
+.lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.93); z-index:10000; align-items:center; justify-content:center; }
+.lightbox.open { display:flex; }
+.lightbox img { max-width:90vw; max-height:85vh; object-fit:contain; border-radius:8px; }
+.lb-close { position:absolute; top:1.5rem; right:1.5rem; color:white; font-size:2.8rem; cursor:pointer; line-height:1; transition:var(--tr); }
+.lb-close:hover { color:var(--gold); transform:rotate(90deg); }
+
+/* ==============================
+   SCROLL REVEAL
+   ============================== */
+.reveal { opacity:0; transform:translateY(38px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.revealed { opacity:1; transform:translateY(0); }
+.reveal-left { opacity:0; transform:translateX(-38px); transition:opacity .7s ease, transform .7s ease; }
+.reveal-left.revealed { opacity:1; transform:translateX(0); }
+.reveal-right { opacity:0; transform:translateX(38px); transition:opacity .7s ease, transform .7s ease; }
+.reveal-right.revealed { opacity:1; transform:translateX(0); }
+.d1 { transition-delay:.1s!important; }
+.d2 { transition-delay:.2s!important; }
+.d3 { transition-delay:.3s!important; }
+.d4 { transition-delay:.4s!important; }
+.d5 { transition-delay:.5s!important; }
+
+/* ==============================
+   ANIMATIONS
+   ============================== */
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+@keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 33%{transform:translateY(-10px) rotate(3deg)} 66%{transform:translateY(-5px) rotate(-2deg)} }
+.anim-float { animation:float 5s ease-in-out infinite; }
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media(max-width:1024px){
+  .price-grid { grid-template-columns:repeat(2,1fr); }
+  .price-card.feat { transform:scale(1); }
+  .season-grid { grid-template-columns:repeat(2,1fr); }
+  .feature-strip { grid-template-columns:repeat(3,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .masonry { columns:3; }
+}
+@media(max-width:768px){
+  section { padding:3.5rem 1.5rem; }
+  .about-grid { grid-template-columns:1fr; }
+  .about-img-stack { height:280px; }
+  .two-col { grid-template-columns:1fr; }
+  .cards { grid-template-columns:1fr; }
+  .spotlight { grid-template-columns:1fr; direction:ltr!important; }
+  .spotlight:nth-child(even) { direction:ltr!important; }
+  .garden-mosaic { grid-template-columns:1fr 1fr; }
+  .masonry { columns:2; }
+  .price-grid { grid-template-columns:1fr; }
+  .season-grid { grid-template-columns:1fr 1fr; }
+  .footer-grid { grid-template-columns:1fr; gap:2rem; }
+  .nav-links { display:none; }
+  .nav-links.open { display:flex; flex-direction:column; position:absolute; top:70px; left:0; right:0; background:var(--g-deep); padding:1.4rem 2rem; gap:1.1rem; }
+  .hamburger { display:flex; }
+}
+@media(max-width:480px){
+  .masonry { columns:1; }
+  .garden-mosaic { grid-template-columns:1fr; }
+  .garden-mosaic .span2 { grid-column:span 1; }
+  .feature-strip { grid-template-columns:1fr 1fr; }
+  .season-grid { grid-template-columns:1fr; }
+  .hero h1 { font-size:2.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- BUTTERFLY CANVAS -->
+<canvas id="butterfly-canvas"></canvas>
+
+<!-- ========================================================
+     NAVIGATION
+     ======================================================== -->
+<nav class="nav" id="main-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🦚</div>
+    <div class="nav-logo-text">Mitchell Park Zoo <span>Durban · Est. 1898</span></div>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#animals">Animals</a></li>
+    <li><a href="#gardens">Gardens</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#visit" class="nav-cta">Plan Visit</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ========================================================
+     HERO
+     ======================================================== -->
+<section id="home">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 Est. 1898 · Morningside, Durban, South Africa</div>
+    <h1>Where <em>Wildlife</em> Meets Wonder</h1>
+    <p class="hero-sub">Step into Durban's cherished urban wildlife sanctuary — exotic animals, lush tropical gardens &amp; unforgettable family memories.</p>
+    <div class="hero-btns">
+      <a href="#animals" class="btn btn-gold">Meet Our Animals</a>
+      <a href="#visit" class="btn btn-outline">Plan Your Visit</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to Explore</div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat-item"><span class="stat-num" data-target="50">0</span><span class="stat-lbl">Animal Species</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="120">0</span><span class="stat-lbl">Years of Heritage</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="6">0</span><span class="stat-lbl">Hectares of Gardens</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="80000">0</span><span class="stat-lbl">Annual Visitors</span></div>
+  </div>
+</div>
+
+<!-- ========================================================
+     ABOUT
+     ======================================================== -->
+<section id="about" class="sec-cream">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="sec-tag">Our Story</div>
+        <h2 class="sec-title">Durban's Hidden <span>Gem</span></h2>
+        <p class="about-quote">"A walk through Mitchell Park is a walk through the soul of Durban."</p>
+        <p class="sec-desc" style="color:var(--txt-mid)">Nestled in the leafy suburb of Morningside, Mitchell Park Zoo has captivated visitors since 1898. This beloved municipal zoo — managed by eThekwini Municipality — is one of Durban's most treasured landmarks: a lush escape where children press their faces to glass to watch chameleons, families picnic beneath century-old trees, and peacocks strut freely through manicured gardens.</p>
+        <p class="sec-desc" style="color:var(--txt-mid);margin-top:.9rem">Spanning approximately 6 hectares, the park blends a traditional zoological collection with stunning botanical displays, making it a uniquely comprehensive destination for wildlife and plant lovers alike.</p>
+        <ul class="check-list" style="margin-top:1.2rem">
+          <li>50+ animal species from across Africa and beyond</li>
+          <li>Spectacular tropical and indigenous plant collections</li>
+          <li>Over 120 years of cherished community heritage</li>
+          <li>Picnic lawns, shaded paths &amp; children's play areas</li>
+          <li>Open daily — perfect for spontaneous family days out</li>
+        </ul>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
+          <a href="#animals" class="btn btn-gold">Explore Animals</a>
+          <a href="#visit" class="btn btn-line-dark">Getting Here</a>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="about-img-stack anim-float">
+          <img class="about-img-main" src="images/mitchell-park (5).jpg" alt="Mitchell Park Zoo grounds" loading="lazy">
+          <img class="about-img-accent" src="images/20180304-101544-largejpg.jpg" alt="Zoo gardens" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-strip reveal" style="margin-top:4rem">
+      <div class="feat-item"><span class="feat-icon">🦜</span><div class="feat-title">Exotic Birds</div><div class="feat-text">20+ bird species including free-roaming peacocks &amp; parrots.</div></div>
+      <div class="feat-item"><span class="feat-icon">🦎</span><div class="feat-title">Reptile House</div><div class="feat-text">Tortoises, chameleons, iguanas &amp; giant pythons up close.</div></div>
+      <div class="feat-item"><span class="feat-icon">🌸</span><div class="feat-title">Botanical Gardens</div><div class="feat-text">Tropical blooms, indigenous plants &amp; tranquil koi ponds.</div></div>
+      <div class="feat-item"><span class="feat-icon">🐒</span><div class="feat-title">Primate Sanctuary</div><div class="feat-text">Vervet monkeys in spacious, naturalistic enclosures.</div></div>
+      <div class="feat-item"><span class="feat-icon">👨‍👩‍👧</span><div class="feat-title">Family Friendly</div><div class="feat-text">Picnic lawns, play areas &amp; accessible walking paths.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     ANIMALS
+     ======================================================== -->
+<section id="animals" class="sec-light">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-tag">Wildlife</div>
+      <h2 class="sec-title">Our Animal <span>Family</span></h2>
+      <p class="sec-desc" style="color:var(--txt-mid)">Discover over 50 species that call Mitchell Park Zoo home — from playful primates and ancient reptiles to dazzling birds and curious mammals.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Animals</button>
+      <button class="filter-btn" data-filter="mammal">🐒 Mammals</button>
+      <button class="filter-btn" data-filter="bird">🦜 Birds</button>
+      <button class="filter-btn" data-filter="reptile">🦎 Reptiles</button>
+      <button class="filter-btn" data-filter="aquatic">🐠 Aquatic</button>
+    </div>
+
+    <div class="cards" id="animal-cards">
+
+      <div class="card reveal d1" data-cat="mammal">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://i.natgeofe.com/n/ce8d6d8c-c2fa-4159-a87b-12d6a306e7f2/SPI-2789493.jpg" alt="Meerkat" loading="lazy">
+          <span class="card-badge">Mammal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Suricata suricatta</div>
+          <h3 class="card-title">Meerkat</h3>
+          <p class="card-text">The ever-watchful sentinels of the animal world. These charismatic social creatures stand to attention on their hind legs, scanning for danger while the mob forages — endlessly entertaining for younger visitors.</p>
+          <div class="tags"><span class="tag">Mongoose Family</span><span class="tag">Highly Social</span><span class="tag">Diurnal</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d2" data-cat="mammal">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://i0.wp.com/dewetswild.com/wp-content/uploads/2019/10/vervetmonkey_knp_sep2019-86.jpg?w=400&ssl=1" alt="Vervet Monkey" loading="lazy">
+          <span class="card-badge">Mammal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Chlorocebus pygerythrus</div>
+          <h3 class="card-title">Vervet Monkey</h3>
+          <p class="card-text">Among the most recognisable primates in sub-Saharan Africa. Intelligent and expressive, these monkeys demonstrate surprisingly complex social hierarchies — grooming sessions, play-fights and territorial displays unfold naturally throughout the day.</p>
+          <div class="tags"><span class="tag">Primate</span><span class="tag">KZN Native</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d3" data-cat="mammal">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://thumbs.dreamstime.com/b/clear-eye-level-wildlife-photograph-common-warthog-phacochoerus-africanus-its-natural-habitat-addo-elephant-454265997.jpg" alt="Warthog" loading="lazy">
+          <span class="card-badge">Mammal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Phacochoerus africanus</div>
+          <h3 class="card-title">Common Warthog</h3>
+          <p class="card-text">Don't let the face fool you — warthogs are surprisingly loveable! Known for running with their tufted tails held high like antennas, these intelligent African wild pigs are a symbol of resilience and character.</p>
+          <div class="tags"><span class="tag">African Wild Pig</span><span class="tag">Grassland</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d1" data-cat="bird">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://cdn.create.vista.com/api/media/small/777712936/stock-photo-majestic-peacock-displaying-its-vibrant-tail-feathers" alt="Peacock" loading="lazy">
+          <span class="card-badge">Bird</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Pavo cristatus</div>
+          <h3 class="card-title">Indian Peacock</h3>
+          <p class="card-text">The park's most flamboyant residents. Male peacocks fan their iridescent train — over 200 shimmering feathers, each decorated with an eye-like ocellus — in a breathtaking courtship display. They roam freely through the garden paths.</p>
+          <div class="tags"><span class="tag">Free-Roaming</span><span class="tag">India's National Bird</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d2" data-cat="bird">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://thumbs.dreamstime.com/b/african-grey-parrot-looking-metal-wire-mesh-cage-zoo-aviary-450416976.jpg" alt="African Grey Parrot" loading="lazy">
+          <span class="card-badge">Bird</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Psittacus erithacus</div>
+          <h3 class="card-title">African Grey Parrot</h3>
+          <p class="card-text">Considered one of the most intelligent birds on Earth, African Grey Parrots can mimic speech with startling accuracy. Their silver plumage and bright red tail make them instantly recognisable — and their personality makes them unforgettable.</p>
+          <div class="tags"><span class="tag">Highly Intelligent</span><span class="tag">Central Africa</span><span class="tag">Endangered</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d3" data-cat="bird">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://thumbs.dreamstime.com/b/flamingo-water-south-africa-flock-65066656.jpg" alt="Flamingo" loading="lazy">
+          <span class="card-badge">Bird</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Phoenicopterus roseus</div>
+          <h3 class="card-title">Greater Flamingo</h3>
+          <p class="card-text">Tall, pink, and utterly captivating — flamingos are one of nature's most spectacular birds. Their colouring comes entirely from carotenoids in the algae and shrimp they consume. A true crowd-stopper at every visit.</p>
+          <div class="tags"><span class="tag">Wading Bird</span><span class="tag">Lagoon Species</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d4" data-cat="bird">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://i.pinimg.com/originals/55/f6/05/55f6050cc495ec7d04cfad221d086172.jpg" alt="African Fish Eagle" loading="lazy">
+          <span class="card-badge">Bird</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Icthyophaga vocifer</div>
+          <h3 class="card-title">African Fish Eagle</h3>
+          <p class="card-text">With its unmistakable cry that echoes across Africa's waterways, the African Fish Eagle is rightly called "the voice of Africa." Up close this magnificent raptor is awe-inspiring — the national bird of three African nations.</p>
+          <div class="tags"><span class="tag">Raptor</span><span class="tag">Icon of Africa</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d5" data-cat="bird">
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/beautiful-feathers-and.jpg" alt="Exotic Bird" loading="lazy">
+          <span class="card-badge">Bird</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Various species</div>
+          <h3 class="card-title">Exotic Tropical Birds</h3>
+          <p class="card-text">The aviary is alive with colour and sound — macaws, lovebirds, lorikeets, parakeets and tropical species from across the globe. The symphony of birdsong is one of Mitchell Park's most enchanting sensory experiences.</p>
+          <div class="tags"><span class="tag">20+ Species</span><span class="tag">Tropical Aviary</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d1" data-cat="reptile">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Flap-necked_chameleon_(Chamaeleo_dilepis)_female_2.jpg" alt="Chameleon" loading="lazy">
+          <span class="card-badge">Reptile</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Chamaeleo dilepis</div>
+          <h3 class="card-title">Flap-neck Chameleon</h3>
+          <p class="card-text">A master of disguise — the flap-neck chameleon shifts colour in real time before your eyes. Each eye moves independently, giving 360° vision. One of Africa's most fascinating reptiles and a particular favourite with children.</p>
+          <div class="tags"><span class="tag">Colour-Changing</span><span class="tag">KZN Native</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d2" data-cat="reptile">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.istockphoto.com/id/641440752/photo/leopard-tortoise.jpg?s=612x612&w=0&k=20&c=n0VkX0LBZGQ2QsNMIcfN5jUbnCUNFFlxZ-dZxDDRxm8=" alt="Leopard Tortoise" loading="lazy">
+          <span class="card-badge">Reptile</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Stigmochelys pardalis</div>
+          <h3 class="card-title">Leopard Tortoise</h3>
+          <p class="card-text">Africa's largest tortoise — and the world's fourth-largest — named for its beautiful spotted shell. These gentle giants can live over 100 years and reach 70cm in length. Children love their calm, ancient presence.</p>
+          <div class="tags"><span class="tag">Up to 100 Years</span><span class="tag">Africa's Largest Tortoise</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d3" data-cat="reptile">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://cdn.prod.website-files.com/68b49f78e2ebd20e1dd73f8f/6968039d3b4ff7129d0d69b3_zoo-martinique-animaux-reptiles-iguane-vert-05.jpg" alt="Green Iguana" loading="lazy">
+          <span class="card-badge">Reptile</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Iguana iguana</div>
+          <h3 class="card-title">Green Iguana</h3>
+          <p class="card-text">Prehistoric-looking and imposing, the green iguana is a docile herbivore reaching 2 metres in length. Their spiny dewlap, armoured scales and ancient appearance make them one of the zoo's most visually striking residents.</p>
+          <div class="tags"><span class="tag">Herbivore</span><span class="tag">Up to 2m Long</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d4" data-cat="reptile">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://t3.ftcdn.net/jpg/02/11/93/40/360_F_211934055_QCpT5tiTyxovqOebh5hfI1e4Hrs5p8y5.jpg" alt="Ball Python" loading="lazy">
+          <span class="card-badge">Reptile</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Python regius</div>
+          <h3 class="card-title">Ball Python</h3>
+          <p class="card-text">Calm and beautifully patterned — the ball python curls into a tight ball when threatened. Their intricate geometric scale patterns are a masterpiece of natural design. Non-venomous and remarkably docile.</p>
+          <div class="tags"><span class="tag">Constrictor</span><span class="tag">West Africa</span><span class="tag">Non-venomous</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d1" data-cat="aquatic">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.pexels.com/photos/1335971/pexels-photo-1335971.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Koi Fish" loading="lazy">
+          <span class="card-badge">Aquatic</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Cyprinus rubrofuscus</div>
+          <h3 class="card-title">Ornamental Koi</h3>
+          <p class="card-text">The tranquil koi ponds of Mitchell Park are a beloved feature. Shimmering in gold, white, red and black, these ancient Japanese ornamental fish glide serenely through crystal-clear water surrounded by water lilies. A meditative experience.</p>
+          <div class="tags"><span class="tag">Living Jewels</span><span class="tag">Koi Ponds</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d2" data-cat="aquatic">
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/bird-at-the-zoo.jpg" alt="Waterfowl" loading="lazy">
+          <span class="card-badge">Aquatic</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Various species</div>
+          <h3 class="card-title">Waterfowl &amp; Pond Birds</h3>
+          <p class="card-text">The ponds and streams are alive with ducks, moorhens, ibises and wading birds. These water birds add movement and character to the garden landscape, their chatter a constant soundtrack to the park experience.</p>
+          <div class="tags"><span class="tag">Pond Habitat</span><span class="tag">Free-Roaming</span></div>
+        </div>
+      </div>
+
+    </div><!-- /cards -->
+
+    <div class="divider">· · · 🦋 · · ·</div>
+
+    <!-- SPOTLIGHTS -->
+    <div class="sec-header reveal" style="margin-bottom:2.5rem">
+      <div class="sec-tag">In-Depth</div>
+      <h2 class="sec-title">Animal <span>Spotlights</span></h2>
+      <p class="sec-desc" style="color:var(--txt-mid)">Go deeper with our most beloved residents.</p>
+    </div>
+
+    <div class="spotlight reveal">
+      <img src="images/the-zoo-at-mitchells.jpg" alt="Mitchell Park Zoo" loading="lazy">
+      <div>
+        <span class="sp-sci">Pavo cristatus · Indian Peacock</span>
+        <h3 class="sp-title">The Stars of the Park</h3>
+        <p class="sp-text">No visit to Mitchell Park Zoo is complete without encountering one of its free-roaming peacocks. These magnificent birds wander the garden paths with regal confidence, often spreading their spectacular tail feathers — called a "train" — in a dazzling courtship display that stops every visitor mid-step.</p>
+        <p class="sp-text">The train can reach up to 1.8 metres in length and contains over 200 feathers, each decorated with an iridescent "eye" that shimmers between blue, green and gold. The male fans his train and vibrates the feathers to create a hypnotic rustling sound.</p>
+        <div class="sp-facts">
+          <div class="sp-fact"><div class="sp-fact-lbl">Lifespan</div><div class="sp-fact-val">20–25 years</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Train Length</div><div class="sp-fact-val">Up to 1.8m</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Wingspan</div><div class="sp-fact-val">Up to 1.6m</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Status</div><div class="sp-fact-val">Least Concern</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spotlight reveal">
+      <img src="https://i0.wp.com/dewetswild.com/wp-content/uploads/2019/10/vervetmonkey_knp_sep2019-86.jpg?w=500&ssl=1" alt="Vervet Monkey" loading="lazy">
+      <div>
+        <span class="sp-sci">Chlorocebus pygerythrus · Vervet Monkey</span>
+        <h3 class="sp-title">Africa's Most Expressive Primate</h3>
+        <p class="sp-text">Vervet monkeys have an elaborate alarm-call system with distinct calls for different predators — aerial threats, land predators and snakes each trigger a different call, and troop members respond appropriately without even seeing the threat.</p>
+        <p class="sp-text">Mitchell Park's vervets live in a spacious enclosure where visitors observe their rich social lives — grooming sessions, infant care, play behaviour and territorial displays all unfold naturally throughout the day.</p>
+        <div class="sp-facts">
+          <div class="sp-fact"><div class="sp-fact-lbl">Weight</div><div class="sp-fact-val">3.5–8 kg</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Lifespan</div><div class="sp-fact-val">12–20 years</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Group Size</div><div class="sp-fact-val">10–50 individuals</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Status</div><div class="sp-fact-val">Least Concern</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spotlight reveal">
+      <img src="https://media.istockphoto.com/id/641440752/photo/leopard-tortoise.jpg?s=612x612&w=0&k=20&c=n0VkX0LBZGQ2QsNMIcfN5jUbnCUNFFlxZ-dZxDDRxm8=" alt="Leopard Tortoise" loading="lazy">
+      <div>
+        <span class="sp-sci">Stigmochelys pardalis · Leopard Tortoise</span>
+        <h3 class="sp-title">A Living Fossil</h3>
+        <p class="sp-text">The leopard tortoise is Africa's gentle giant — the continent's largest tortoise and one that has barely changed in millions of years. Their domed shells, patterned like a leopard's coat, are as unique as fingerprints: no two are identical.</p>
+        <p class="sp-text">These remarkable animals can live over a century, store water in their bladder for dry seasons, and travel surprising distances in search of food. At Mitchell Park, they move slowly through their sunny enclosure — a living connection to prehistoric Africa.</p>
+        <div class="sp-facts">
+          <div class="sp-fact"><div class="sp-fact-lbl">Max Weight</div><div class="sp-fact-val">Up to 54 kg</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Shell Length</div><div class="sp-fact-val">Up to 70 cm</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Lifespan</div><div class="sp-fact-val">80–100 years</div></div>
+          <div class="sp-fact"><div class="sp-fact-lbl">Status</div><div class="sp-fact-val">Least Concern</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================================
+     GARDENS & FLOWERS
+     ======================================================== -->
+<section id="gardens" class="sec-green">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="sec-tag" style="color:var(--gold)">Botanical Gardens</div>
+        <h2 class="sec-title" style="color:white">A Garden <span>Paradise</span></h2>
+        <p class="sec-desc" style="color:rgba(255,255,255,.85)">Mitchell Park is as much a botanical sanctuary as it is a zoo. Walking the shaded paths, you'll encounter ancient cycads that outlived the dinosaurs, explosions of bougainvillea colour, the iconic Bird of Paradise in full bloom, and tranquil ponds draped in water lilies.</p>
+        <ul class="check-list white" style="margin-top:1.2rem">
+          <li>Bird of Paradise (Strelitzia reginae) — SA's iconic bloom</li>
+          <li>King Protea — South Africa's national flower</li>
+          <li>Ancient cycads — living fossils, 250M years old</li>
+          <li>Koi ponds with water lilies &amp; papyrus</li>
+          <li>Bougainvillea, hibiscus, agapanthus &amp; aloes</li>
+          <li>Seasonal displays bloom year-round in Durban's climate</li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <div class="garden-mosaic">
+          <img src="images/img-20180127-141352-largejpg.jpg" alt="Garden" class="span2" loading="lazy">
+          <img src="images/img-20180127-143647-largejpg.jpg" alt="Garden path" loading="lazy">
+          <img src="images/img-20180127-145214-largejpg.jpg" alt="Flowers" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-tag">Botanical Collection</div>
+      <h2 class="sec-title">Featured Plants <span>&amp; Flowers</span></h2>
+      <p class="sec-desc" style="color:var(--txt-mid)">From South Africa's national flower to ancient living fossils — every plant in the park tells a story.</p>
+    </div>
+
+    <div class="cards" style="margin-top:2.5rem">
+
+      <div class="card reveal d1">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://houseplanthouse.com/wp-content/uploads/2022/11/26ea8-strelitzia-bird-of-paradise-crane-flower-crane-plant-care-guide-blogpost-house-plant-house_17.jpg" alt="Bird of Paradise" loading="lazy">
+          <span class="card-badge">SA Icon</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Strelitzia reginae</div>
+          <h3 class="card-title">Bird of Paradise</h3>
+          <p class="card-text">South Africa's most celebrated flower — vivid orange and electric blue petals resembling an exotic bird in flight. Named after Queen Charlotte of Mecklenburg-Strelitz, this is the official flower of Los Angeles and grows abundantly throughout the park.</p>
+          <div class="tags"><span class="tag">SA Native</span><span class="tag">Year-round blooms</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d2">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://newflower.com/public/assets/img/South%20African%20man%20hold%20a%20king%20Protea%20flower.jpg" alt="King Protea" loading="lazy">
+          <span class="card-badge">National Flower</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Protea cynaroides</div>
+          <h3 class="card-title">King Protea</h3>
+          <p class="card-text">South Africa's national flower — a stunning architectural bloom up to 30cm across. The king protea belongs to one of the world's oldest plant families, with fossil records dating back 300 million years. Its lineage connects to a time before Africa and South America separated.</p>
+          <div class="tags"><span class="tag">National Flower</span><span class="tag">Ancient Family</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d3">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://www.plantsbymail.com/cdn/shop/files/Agapanthus_Indigo-Frost_Landscape_1.jpg?v=1740690759&width=600" alt="Agapanthus" loading="lazy">
+          <span class="card-badge">KZN Native</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Agapanthus africanus</div>
+          <h3 class="card-title">Agapanthus (Blue Lily)</h3>
+          <p class="card-text">Known as the "Lily of the Nile" — spherical clusters of blue-violet trumpet flowers. In Zulu culture, this plant holds deep spiritual significance, used in protective medicine and connected to fertility and childbirth across generations.</p>
+          <div class="tags"><span class="tag">Summer Blooms</span><span class="tag">Zulu Heritage</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d4">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://riskbulletins.globalinitiative.net/esa-obs-022/images/web/IMG_6964.jpg" alt="Cycad" loading="lazy">
+          <span class="card-badge">Living Fossil</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Encephalartos species</div>
+          <h3 class="card-title">African Cycads</h3>
+          <p class="card-text">Living fossils unchanged for over 250 million years — they co-existed with dinosaurs. KwaZulu-Natal is home to several endemic cycad species, some critically endangered. Mitchell Park's collection plays a vital conservation role.</p>
+          <div class="tags"><span class="tag">250M Years Old</span><span class="tag">Critically Endangered</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d1">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://static.vecteezy.com/system/resources/thumbnails/069/954/625/small/red-tropical-bougainvillea-flowers-in-cyprus-photo.jpg" alt="Bougainvillea" loading="lazy">
+          <span class="card-badge">Tropical Climber</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Bougainvillea spectabilis</div>
+          <h3 class="card-title">Bougainvillea</h3>
+          <p class="card-text">Blazing in magenta, crimson, orange and yellow — bougainvillea transforms every wall and pergola it touches. In Durban's warm climate it thrives spectacularly, cascading over structures in a riot of tropical colour throughout the park.</p>
+          <div class="tags"><span class="tag">Year-round Colour</span><span class="tag">Wall Climber</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d2">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://gardenerspath.com/wp-content/uploads/2020/03/Red-Hibiscus-Flowers-in-Bright-Sunshine.jpg" alt="Hibiscus" loading="lazy">
+          <span class="card-badge">Tropical Bloom</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Hibiscus rosa-sinensis</div>
+          <h3 class="card-title">Hibiscus</h3>
+          <p class="card-text">Trumpet-shaped blooms in red, pink, orange and yellow — a defining feature of Durban's tropical aesthetic. In KwaZulu-Natal's warm, humid climate they bloom almost continuously. In traditional medicine, hibiscus has long been used as a tonic and herbal tea.</p>
+          <div class="tags"><span class="tag">Durban Favourite</span><span class="tag">Medicinal Uses</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d3">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://tricker.com/wp-content/uploads/2023/08/mottled-trio-leaf-water-lily-collection-399x399.jpg.webp" alt="Water Lily" loading="lazy">
+          <span class="card-badge">Aquatic Plant</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Nymphaea species</div>
+          <h3 class="card-title">Water Lilies</h3>
+          <p class="card-text">The koi ponds are adorned with exquisite water lilies — broad floating leaves providing shade for fish below while blooms open in the morning sun. White, pink and yellow varieties create a serene, impressionistic scene beloved by photographers.</p>
+          <div class="tags"><span class="tag">Koi Pond</span><span class="tag">Daytime Blooms</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal d4">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.istockphoto.com/id/860986042/photo/aloe-plant.jpg?s=612x612&w=0&k=20&c=3GOBDoUwfHSWsn0mRYwzHiDnmd7aBb0ceg0avEieLN0=" alt="Aloe" loading="lazy">
+          <span class="card-badge">Indigenous</span>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Aloe species</div>
+          <h3 class="card-title">South African Aloes</h3>
+          <p class="card-text">South Africa is home to over 150 aloe species — and Mitchell Park celebrates several. These striking succulents with architectural rosettes and dramatic flower spires are vital to sunbirds and bees, and have deep roots in South African traditional medicine.</p>
+          <div class="tags"><span class="tag">Sunbird Nectar</span><span class="tag">150+ SA Species</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Seasonal -->
+    <div class="sec-header reveal" style="margin-top:4rem">
+      <div class="sec-tag">Year-Round</div>
+      <h2 class="sec-title">Something Blooms <span>Every Season</span></h2>
+      <p class="sec-desc" style="color:var(--txt-mid)">Durban's subtropical climate means Mitchell Park's gardens are never without colour.</p>
+    </div>
+    <div class="season-grid">
+      <div class="season-card reveal d1"><div class="s-icon">🌞</div><div class="s-name">Summer</div><div class="s-months">Dec – Feb</div><p class="s-text">Peak tropical display. Hibiscus, bougainvillea and strelitzia in full glory. Lush green canopy overhead.</p></div>
+      <div class="season-card reveal d2"><div class="s-icon">🍂</div><div class="s-name">Autumn</div><div class="s-months">Mar – May</div><p class="s-text">Agapanthus fades gracefully. Proteas emerge. Aloes begin their winter flowering cycle.</p></div>
+      <div class="season-card reveal d3"><div class="s-icon">❄️</div><div class="s-name">Winter</div><div class="s-months">Jun – Aug</div><p class="s-text">Aloes burst into fiery orange spires feeding flocks of sunbirds. King Proteas spectacular in the mild Durban winter.</p></div>
+      <div class="season-card reveal d4"><div class="s-icon">🌱</div><div class="s-name">Spring</div><div class="s-months">Sep – Nov</div><p class="s-text">The garden reawakens. Jacarandas paint the suburb purple. Water lilies unfurl. Everything is fresh and alive again.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     GALLERY
+     ======================================================== -->
+<section id="gallery" class="sec-alt">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-tag" style="color:var(--gold)">Photography</div>
+      <h2 class="sec-title" style="color:white">Photo <span>Gallery</span></h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,.8)">Real moments captured at Mitchell Park Zoo — click any photo to enlarge.</p>
+    </div>
+
+    <div style="margin-top:2rem" class="reveal">
+      <div class="section-anchor-title" style="color:white">🏛️ Park Scenes</div>
+      <div class="masonry" id="masonry-gallery">
+        <div class="mitem" onclick="openLb('images/mitchell-park (1).jpg')"><img src="images/mitchell-park (1).jpg" alt="Mitchell Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (2).jpg')"><img src="images/mitchell-park (2).jpg" alt="Park Gardens" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (3).jpg')"><img src="images/mitchell-park (3).jpg" alt="Park Landscape" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (4).jpg')"><img src="images/mitchell-park (4).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (5).jpg')"><img src="images/mitchell-park (5).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (6).jpg')"><img src="images/mitchell-park (6).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (7).jpg')"><img src="images/mitchell-park (7).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (8).jpg')"><img src="images/mitchell-park (8).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (9).jpg')"><img src="images/mitchell-park (9).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (10).jpg')"><img src="images/mitchell-park (10).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (11).jpg')"><img src="images/mitchell-park (11).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (12).jpg')"><img src="images/mitchell-park (12).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park (13).jpg')"><img src="images/mitchell-park (13).jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/mitchell-park.jpg')"><img src="images/mitchell-park.jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem" class="reveal">
+      <div class="section-anchor-title" style="color:white">🦜 Animals &amp; Birds</div>
+      <div class="masonry">
+        <div class="mitem" onclick="openLb('images/bird-at-the-zoo.jpg')"><img src="images/bird-at-the-zoo.jpg" alt="Bird" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/birds.jpg')"><img src="images/birds.jpg" alt="Birds" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/beautiful-feathers-and.jpg')"><img src="images/beautiful-feathers-and.jpg" alt="Feathers" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/the-zoo-at-mitchells.jpg')"><img src="images/the-zoo-at-mitchells.jpg" alt="Zoo" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/the-zoo-at-mitchells (1).jpg')"><img src="images/the-zoo-at-mitchells (1).jpg" alt="Zoo" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem" class="reveal">
+      <div class="section-anchor-title" style="color:white">🌿 Gardens &amp; Nature</div>
+      <div class="masonry">
+        <div class="mitem" onclick="openLb('images/img-20180127-141352-largejpg.jpg')"><img src="images/img-20180127-141352-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/img-20180127-143647-largejpg.jpg')"><img src="images/img-20180127-143647-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/img-20180127-145214-largejpg.jpg')"><img src="images/img-20180127-145214-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/img-20180127-150712-largejpg.jpg')"><img src="images/img-20180127-150712-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/img-20180127-151053-largejpg.jpg')"><img src="images/img-20180127-151053-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/20180304-100403-largejpg.jpg')"><img src="images/20180304-100403-largejpg.jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/20180304-101544-largejpg.jpg')"><img src="images/20180304-101544-largejpg.jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/20180304-101728-largejpg.jpg')"><img src="images/20180304-101728-largejpg.jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/20180304-114103-largejpg.jpg')"><img src="images/20180304-114103-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/20180304-115025-largejpg.jpg')"><img src="images/20180304-115025-largejpg.jpg" alt="Garden" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/20151222-122222-largejpg.jpg')"><img src="images/20151222-122222-largejpg.jpg" alt="Historic Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/img-20180110-163446-494.jpg')"><img src="images/img-20180110-163446-494.jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem" class="reveal">
+      <div class="section-anchor-title" style="color:white">📸 Visitor Moments</div>
+      <div class="masonry">
+        <div class="mitem" onclick="openLb('images/photo0jpg.jpg')"><img src="images/photo0jpg.jpg" alt="Visitor photo" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/photo2jpg.jpg')"><img src="images/photo2jpg.jpg" alt="Zoo visit" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/photo3jpg.jpg')"><img src="images/photo3jpg.jpg" alt="Park visit" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/photo4jpg.jpg')"><img src="images/photo4jpg.jpg" alt="Memories" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/photo5jpg.jpg')"><img src="images/photo5jpg.jpg" alt="Zoo experience" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+        <div class="mitem" onclick="openLb('images/photo6jpg.jpg')"><img src="images/photo6jpg.jpg" alt="Park" loading="lazy"><div class="mitem-overlay"><span>🔍</span></div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;font-size:.85rem;color:rgba(255,255,255,.5);font-style:italic" class="reveal">
+      Tag your photos: #MitchellParkZoo · #DurbanZoo · #KZNWildlife
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     PLAN YOUR VISIT (prices + hours + map + directions)
+     ======================================================== -->
+<section id="visit" class="sec-cream">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-tag">Plan Your Visit</div>
+      <h2 class="sec-title">Everything You <span>Need to Know</span></h2>
+      <p class="sec-desc" style="color:var(--txt-mid)">Admission prices, opening hours, directions and visitor tips — all in one place.</p>
+    </div>
+
+    <!-- PRICES -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--g-deep);margin:3rem 0 .5rem;text-align:center" class="reveal">🎟️ Admission Prices</h3>
+    <p style="text-align:center;color:var(--txt-mid);font-size:.9rem;margin-bottom:.5rem" class="reveal">Mitchell Park Zoo offers exceptional value — one of the most affordable wildlife experiences in KwaZulu-Natal.</p>
+
+    <div class="price-grid">
+      <div class="price-card reveal d1">
+        <div class="price-icon">🧒</div>
+        <div class="price-lbl">Young Children</div>
+        <div class="price-amt free-amt">FREE</div>
+        <p class="price-details">Children <strong>under 2 years old</strong> enter completely free of charge.<br><br>The zoo is safe, accessible and magical for toddlers.</p>
+      </div>
+      <div class="price-card reveal d2">
+        <div class="price-icon">👦</div>
+        <div class="price-lbl">Children</div>
+        <div class="price-amt">R15<small>/person</small></div>
+        <p class="price-details">For children aged <strong>2–12 years</strong>.<br><br>Full access to all enclosures, gardens and public facilities.</p>
+      </div>
+      <div class="price-card feat reveal d3">
+        <div class="p-badge">Most Popular</div>
+        <div class="price-icon">👨‍👩‍👧‍👦</div>
+        <div class="price-lbl">Adults</div>
+        <div class="price-amt">R30<small>/person</small></div>
+        <p class="price-details">For visitors aged <strong>13 and older</strong>.<br><br>Unlimited access to the full zoo and botanical gardens — extraordinary value.</p>
+      </div>
+      <div class="price-card reveal d4">
+        <div class="price-icon">👴</div>
+        <div class="price-lbl">Pensioners</div>
+        <div class="price-amt">R15<small>/person</small></div>
+        <p class="price-details">For senior visitors with valid pension card.<br><br>We honour and welcome our senior visitors with reduced admission.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--g-pale);border-radius:var(--r);padding:1.8rem;margin-top:1.8rem;display:flex;gap:1.3rem;align-items:flex-start" class="reveal">
+      <span style="font-size:2.2rem;flex-shrink:0">🏫</span>
+      <div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--g-deep);margin-bottom:.4rem">School Groups &amp; Educational Visits</h4>
+        <p style="font-size:.875rem;color:var(--txt-mid);line-height:1.7">Mitchell Park Zoo welcomes school groups and offers special educational programmes aligned to the natural sciences curriculum. Group bookings receive discounted rates and guided tours. Contact the park directly to arrange a school visit.<br><strong style="color:var(--g-mid)">📞 +27 (0)31 303 1853</strong></p>
+      </div>
+    </div>
+    <div style="background:#fff8e7;border:2px solid var(--gold);border-radius:var(--r);padding:1.3rem 1.8rem;margin-top:1.2rem;display:flex;gap:.9rem" class="reveal">
+      <span style="font-size:1.3rem;flex-shrink:0">ℹ️</span>
+      <p style="font-size:.83rem;color:var(--txt-mid);line-height:1.7"><strong style="color:var(--g-deep)">Prices are approximate and subject to change.</strong> Contact the park or check eThekwini Municipality directly to confirm current prices before visiting.</p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- HOURS + TIPS -->
+    <div class="two-col">
+      <div class="reveal-left">
+        <div class="sec-tag">When to Visit</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--g-deep);margin-bottom:1rem">Opening <span style="color:var(--gold)">Hours</span></h3>
+        <div class="info-box">
+          <h3>🕐 Daily Opening Hours</h3>
+          <table class="hours-table">
+            <tr><td class="day">Monday</td><td class="time">08:30 – 17:00</td></tr>
+            <tr><td class="day">Tuesday</td><td class="time">08:30 – 17:00</td></tr>
+            <tr><td class="day">Wednesday</td><td class="time">08:30 – 17:00</td></tr>
+            <tr><td class="day">Thursday</td><td class="time">08:30 – 17:00</td></tr>
+            <tr><td class="day">Friday</td><td class="time">08:30 – 17:00</td></tr>
+            <tr class="hi"><td class="day">Saturday <span class="badge-open">Popular</span></td><td class="time">08:30 – 17:00</td></tr>
+            <tr class="hi"><td class="day">Sunday <span class="badge-open">Popular</span></td><td class="time">08:30 – 17:00</td></tr>
+            <tr><td class="day">Public Holidays</td><td class="time">08:30 – 17:00</td></tr>
+          </table>
+          <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--txt-mid);line-height:1.7">
+            ⚠️ Last entry 30 min before closing<br>
+            🌧️ Park remains open in light rain<br>
+            📅 Hours may vary on special event days
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="sec-tag">Tips</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--g-deep);margin-bottom:1rem">Visitor <span style="color:var(--gold)">Tips</span></h3>
+        <div class="tip-card"><div class="tip-icon">🌅</div><div><div class="tip-title">Arrive Early</div><div class="tip-text">Morning visits (08:30–11:00) are best — animals are most active and feeding. You'll see chameleons hunting, monkeys playing and birds at peak energy.</div></div></div>
+        <div class="tip-card"><div class="tip-icon">☀️</div><div><div class="tip-title">Sun Protection</div><div class="tip-text">Durban's subtropical sun is strong year-round. Hats, sunscreen and sunglasses are essential, especially in summer months (Nov–Mar).</div></div></div>
+        <div class="tip-card"><div class="tip-icon">🧺</div><div><div class="tip-title">Pack a Picnic</div><div class="tip-text">Mitchell Park has beautiful shaded picnic lawns. Bring a blanket and a basket — lunch beneath a century-old tree with peacocks strutting past is unforgettable.</div></div></div>
+        <div class="tip-card"><div class="tip-icon">📷</div><div><div class="tip-title">Bring Your Camera</div><div class="tip-text">The zoo and gardens offer extraordinary photography opportunities. Morning light is exceptional. A long lens helps for bird photography; wide-angle captures the garden grandeur.</div></div></div>
+        <div class="tip-card"><div class="tip-icon">👟</div><div><div class="tip-title">Comfortable Shoes</div><div class="tip-text">The park has winding paths and gentle slopes. Flat, closed shoes are recommended — especially if bringing young children who'll want to explore everywhere.</div></div></div>
+      </div>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- LOCATION + DIRECTIONS -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--g-deep);text-align:center;margin-bottom:2rem" class="reveal">📍 Location &amp; <span style="color:var(--gold)">Directions</span></h3>
+
+    <div class="map-wrap reveal">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=31.0020%2C-29.8360%2C31.0130%2C-29.8280&layer=mapnik&marker=-29.8314%2C31.0076" title="Mitchell Park Zoo on the map" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div style="text-align:center;margin-top:1.3rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="reveal">
+      <a href="https://www.openstreetmap.org/?mlat=-29.8314&mlon=31.0076#map=16/-29.8314/31.0076" target="_blank" rel="noopener" class="btn btn-gold">🗺️ Open Full Map</a>
+      <a href="https://maps.google.com/maps?q=Mitchell+Park+Zoo+Durban+South+Africa" target="_blank" rel="noopener" class="btn btn-dark">📍 Google Maps</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem" class="reveal">
+      <div class="info-box">
+        <h3>📍 Address &amp; Contact</h3>
+        <div class="info-row"><span class="i-icon">📍</span><div><div class="i-lbl">Address</div><div class="i-val">9 Mitchell Park Road<br>Morningside, Durban<br>KwaZulu-Natal, 4001</div></div></div>
+        <div class="info-row"><span class="i-icon">📞</span><div><div class="i-lbl">Phone</div><div class="i-val">+27 (0)31 303 1853</div></div></div>
+        <div class="info-row"><span class="i-icon">🌐</span><div><div class="i-lbl">Managed By</div><div class="i-val">eThekwini Municipality<br>Parks, Recreation &amp; Culture</div></div></div>
+        <div class="info-row"><span class="i-icon">📌</span><div><div class="i-lbl">GPS</div><div class="i-val">-29.8314° S, 31.0076° E</div></div></div>
+      </div>
+      <div class="info-box">
+        <h3>🚗 How to Get There</h3>
+        <div class="info-row"><span class="i-icon">🚗</span><div><div class="i-lbl">By Car</div><div class="i-val">Take the N3 to the Morningside exit. Follow Berea Road and turn onto Mitchell Park Road. Free parking at the entrance.</div></div></div>
+        <div class="info-row"><span class="i-icon">🚌</span><div><div class="i-lbl">By Bus</div><div class="i-val">Durban's Mynah Bus system serves Morningside. Berea Road route stops nearby. Ask the driver for Mitchell Park.</div></div></div>
+        <div class="info-row"><span class="i-icon">🚕</span><div><div class="i-lbl">Uber / Taxi</div><div class="i-val">Uber is widely available in Durban. "Mitchell Park Zoo, Morningside" — most rides from the city centre take under 15 minutes.</div></div></div>
+      </div>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- FAQ -->
+    <div class="sec-header reveal">
+      <div class="sec-tag">FAQs</div>
+      <h2 class="sec-title">Frequently Asked <span>Questions</span></h2>
+    </div>
+    <div class="accordion">
+      <div class="acc-item"><div class="acc-head"><h4>Is the zoo open on public holidays?</h4><span class="acc-icon">+</span></div><div class="acc-body">Yes! Mitchell Park Zoo is open every day of the year, including all South African public holidays. Hours remain 08:30–17:00. The park is particularly popular on holidays — arrive early to avoid queues.</div></div>
+      <div class="acc-item"><div class="acc-head"><h4>Is there parking available?</h4><span class="acc-icon">+</span></div><div class="acc-body">Yes, free parking is available at the main entrance on Mitchell Park Road. It can be limited on busy weekends, so arrive early. Additional street parking is available in the surrounding Morningside suburb.</div></div>
+      <div class="acc-item"><div class="acc-head"><h4>Is the park wheelchair and pram accessible?</h4><span class="acc-icon">+</span></div><div class="acc-body">The park has paved walking paths throughout, making it largely accessible for prams and wheelchairs. Some garden areas have uneven terrain. Toilet facilities are available at the park.</div></div>
+      <div class="acc-item"><div class="acc-head"><h4>Can I bring a picnic?</h4><span class="acc-icon">+</span></div><div class="acc-body">Absolutely — and we encourage it! Mitchell Park has beautiful grassed picnic areas with shaded tables. Pack a picnic basket and enjoy lunch surrounded by the sights and sounds of the zoo. Please use the bins to keep the park clean.</div></div>
+      <div class="acc-item"><div class="acc-head"><h4>Are there facilities for children?</h4><span class="acc-icon">+</span></div><div class="acc-body">Yes! The park has a children's play area, toilet facilities and baby-changing facilities. The grounds are safe and child-friendly, with most enclosures designed for easy viewing even by small children.</div></div>
+      <div class="acc-item"><div class="acc-head"><h4>How long should I plan for a visit?</h4><span class="acc-icon">+</span></div><div class="acc-body">Most visitors spend 2–3 hours at the park, but a full leisurely day including a picnic and exploring every enclosure is entirely possible. We recommend at least 2 hours to do the park justice.</div></div>
+      <div class="acc-item"><div class="acc-head"><h4>Are pets allowed?</h4><span class="acc-icon">+</span></div><div class="acc-body">Pet dogs are not permitted inside the park as they can disturb the animals. Service animals with the appropriate documentation are welcome.</div></div>
+    </div>
+
+    <!-- RULES -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem" class="reveal">
+      <div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--g-deep);margin-bottom:1rem">✅ What to Bring</h4>
+        <ul class="check-list">
+          <li>Sunscreen &amp; hat — Durban sun is strong</li>
+          <li>Comfortable walking shoes</li>
+          <li>Camera for incredible photo opportunities</li>
+          <li>Picnic blanket &amp; lunch for the lawns</li>
+          <li>Water bottle — stay hydrated</li>
+          <li>Cash for entry fees</li>
+          <li>Binoculars for birdwatching</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--g-deep);margin-bottom:1rem">📋 Park Rules</h4>
+        <ul style="display:flex;flex-direction:column;gap:.7rem">
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>🚫</span>Do not feed the animals — human food can harm them</li>
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>🔇</span>Keep voices calm around animal enclosures</li>
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>🐕</span>Pet dogs are not permitted inside the park</li>
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>🌿</span>Do not pick flowers or remove any plant material</li>
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>🗑️</span>Please use the provided waste bins</li>
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>🚬</span>No smoking within the park grounds</li>
+          <li style="display:flex;gap:10px;font-size:.88rem;color:var(--txt-mid)"><span>👶</span>Supervise children at all times near enclosures</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="container">
+    <h2>Ready to Experience Mitchell Park Zoo?</h2>
+    <p>Open daily · 08:30–17:00 · 9 Mitchell Park Road, Morningside, Durban · Affordable for all ages</p>
+    <div class="cta-btns">
+      <a href="#visit" class="btn btn-dark">Get Directions &amp; Hours</a>
+      <a href="#gallery" class="btn btn-line-dark">Browse Gallery</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     FOOTER
+     ======================================================== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="f-brand"><div class="f-brand-icon">🦚</div><div class="f-brand-text">Mitchell Park Zoo<br><small style="font-weight:400;font-size:.7rem;opacity:.7">Durban, South Africa</small></div></div>
+      <p class="f-tagline">Durban's beloved wildlife sanctuary, serving the community since 1898. Experience Africa's wildlife and botanical treasures in the heart of Morningside.</p>
+      <div class="f-social"><div class="f-social-btn">📘</div><div class="f-social-btn">📸</div><div class="f-social-btn">🐦</div><div class="f-social-btn">▶</div></div>
+    </div>
+    <div>
+      <div class="f-heading">Explore</div>
+      <ul class="f-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About the Zoo</a></li>
+        <li><a href="#animals">Our Animals</a></li>
+        <li><a href="#gardens">Gardens &amp; Flowers</a></li>
+        <li><a href="#gallery">Photo Gallery</a></li>
+        <li><a href="#visit">Plan Your Visit</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-heading">Visit Info</div>
+      <ul class="f-links">
+        <li><a href="#visit">Entry Prices</a></li>
+        <li><a href="#visit">Opening Hours</a></li>
+        <li><a href="#visit">Location &amp; Map</a></li>
+        <li><a href="#visit">Visitor Tips</a></li>
+        <li><a href="#visit">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-heading">Contact</div>
+      <div class="f-contact-item"><span class="f-contact-icon">📍</span><span>9 Mitchell Park Road,<br>Morningside, Durban, 4001</span></div>
+      <div class="f-contact-item"><span class="f-contact-icon">📞</span><span>+27 (0)31 303 1853</span></div>
+      <div class="f-contact-item"><span class="f-contact-icon">🕐</span><span>Open Daily<br>08:30 – 17:00</span></div>
+      <div class="f-contact-item"><span class="f-contact-icon">🌐</span><span>eThekwini Municipality<br>Parks, Recreation &amp; Culture</span></div>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 Mitchell Park Zoo, Durban. Managed by eThekwini Municipality.</span>
+    <span>Made with ❤ for Durban · #MitchellParkZoo</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-close" onclick="closeLb()">×</div>
+  <img id="lb-img" src="" alt="Full size image">
+</div>
+
+<!-- ========================================================
+     JAVASCRIPT
+     ======================================================== -->
+<script>
+/* ==== NAV ==== */
+const nav = document.getElementById('main-nav');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+/* ==== HERO PARALLAX ==== */
+const heroBg = document.getElementById('hero-bg');
+heroBg.classList.add('loaded');
+window.addEventListener('scroll', () => {
+  if (window.scrollY < window.innerHeight) heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.32}px)`;
+});
+
+/* ==== SCROLL REVEAL ==== */
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => ro.observe(el));
+
+/* ==== COUNTER ==== */
+const co = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = '1';
+      const target = +e.target.dataset.target;
+      const dur = 1800;
+      let start;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        const val = Math.floor((1 - Math.pow(1 - p, 3)) * target);
+        e.target.textContent = val.toLocaleString();
+        if (p < 1) requestAnimationFrame(step);
+        else e.target.textContent = target.toLocaleString();
+      };
+      requestAnimationFrame(step);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => co.observe(el));
+
+/* ==== FILTER ==== */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#animal-cards .card').forEach(c => {
+      c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f);
+    });
+  });
+});
+
+/* ==== ACCORDION ==== */
+document.querySelectorAll('.acc-head').forEach(h => {
+  h.addEventListener('click', () => {
+    const item = h.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ==== LIGHTBOX ==== */
+function openLb(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+/* ==== BUTTERFLY CANVAS ==== */
+(function() {
+  const canvas = document.getElementById('butterfly-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  const resize = () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; };
+  resize();
+  window.addEventListener('resize', resize);
+
+  const colors = [
+    ['#f4a261','#e76f51'],['#52b788','#2d6a4f'],['#c9a84c','#f0d080'],
+    ['#a2d2ff','#4895ef'],['#e9c46a','#f4a261'],['#b5e48c','#52b788'],
+    ['#ffc8dd','#ff85a1'],['#d8bbff','#9b72cf']
+  ];
+
+  class Butterfly {
+    constructor(initial) { this.reset(initial); }
+    reset(initial) {
+      this.x = initial ? Math.random() * W : -100;
+      this.y = initial ? Math.random() * H * 0.8 + H * 0.05 : Math.random() * H * 0.8 + H * 0.05;
+      this.startY = this.y;
+      this.size = 12 + Math.random() * 20;
+      this.speed = 0.5 + Math.random() * 1.4;
+      this.wingPhase = Math.random() * Math.PI * 2;
+      this.wingSpeed = 0.07 + Math.random() * 0.1;
+      this.waveAmp = 28 + Math.random() * 52;
+      this.waveFreq = 0.007 + Math.random() * 0.007;
+      this.col = colors[Math.floor(Math.random() * colors.length)];
+      this.alpha = 0.6 + Math.random() * 0.4;
+      this.t = 0;
+      this.delay = initial ? 0 : Math.floor(Math.random() * 360);
+    }
+    update() {
+      if (this.delay-- > 0) return;
+      this.t++;
+      this.x += this.speed;
+      this.y = this.startY + Math.sin(this.x * this.waveFreq) * this.waveAmp;
+      this.wingPhase += this.wingSpeed;
+      if (this.x > W + 120) this.reset(false);
+    }
+    draw() {
+      if (this.delay > 0) return;
+      const { x, y, size: s, wingPhase: wp, col, alpha } = this;
+      const flap = (Math.sin(wp) + 1) / 2;
+      const w = s * (0.25 + flap * 0.75);
+      const h = s;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(x, y);
+      ctx.rotate(Math.sin(wp * 0.5) * 0.18);
+      // Upper wings
+      ctx.fillStyle = col[0];
+      ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(-w*.35,-h*.3,-w,-h,-w*1.1,-h*.08); ctx.bezierCurveTo(-w*.75,h*.45,-w*.2,h*.1,0,0); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(w*.35,-h*.3,w,-h,w*1.1,-h*.08); ctx.bezierCurveTo(w*.75,h*.45,w*.2,h*.1,0,0); ctx.fill();
+      // Lower wings
+      ctx.fillStyle = col[1];
+      ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(-w*.75,h*.2,-w*.85,h*.85,-w*.3,h*.7); ctx.bezierCurveTo(-w*.1,h*.5,0,h*.3,0,0); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(w*.75,h*.2,w*.85,h*.85,w*.3,h*.7); ctx.bezierCurveTo(w*.1,h*.5,0,h*.3,0,0); ctx.fill();
+      // Dots
+      ctx.globalAlpha = alpha * 0.35; ctx.fillStyle = 'white';
+      ctx.beginPath(); ctx.arc(-w*.48,-h*.32,s*.07,0,Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(w*.48,-h*.32,s*.07,0,Math.PI*2); ctx.fill();
+      // Body
+      ctx.globalAlpha = alpha; ctx.fillStyle = '#2d1a0e';
+      ctx.beginPath(); ctx.ellipse(0,-h*.08,s*.065,h*.42,0,0,Math.PI*2); ctx.fill();
+      // Antennae
+      ctx.strokeStyle = '#2d1a0e'; ctx.lineWidth = 1; ctx.globalAlpha = alpha * 0.8;
+      ctx.beginPath(); ctx.moveTo(0,-h*.48); ctx.quadraticCurveTo(-s*.28,-h*1.05,-s*.48,-h*1.18); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0,-h*.48); ctx.quadraticCurveTo(s*.28,-h*1.05,s*.48,-h*1.18); ctx.stroke();
+      ctx.fillStyle = '#2d1a0e'; ctx.globalAlpha = alpha;
+      ctx.beginPath(); ctx.arc(-s*.48,-h*1.18,2.2,0,Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(s*.48,-h*1.18,2.2,0,Math.PI*2); ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  const butterflies = Array.from({ length: 12 }, (_, i) => new Butterfly(i < 8));
+  const loop = () => {
+    ctx.clearRect(0, 0, W, H);
+    butterflies.forEach(b => { b.update(); b.draw(); });
+    requestAnimationFrame(loop);
+  };
+  loop();
+})();
+</script>
+</body>
+</html>
